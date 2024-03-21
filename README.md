@@ -1,2 +1,2 @@
-# LynxLodge-RIS
+# LodgeLynx-RIS
 Project for RIS
