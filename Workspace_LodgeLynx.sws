@@ -4,7 +4,8 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{1C03B492-1786-430C-93F1-1FBFDA1AC11E}" Name="ObjectOrientedModel_1" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="take1¸-lynxlodge.oom"/>
+		<Model Expanded="Yes" ID="{1C03B492-1786-430C-93F1-1FBFDA1AC11E}" Name="ObjectOrientedModel_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="take1¸-lynxlodge.oom"/>
+		<Model Expanded="Yes" ID="{3A159D12-CF37-4C39-A526-B09FB625FA1F}" Name="Stadion" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="file:///Z|/RIS_vaje_5_OOM_datoteka_class_diagram.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
