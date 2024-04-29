@@ -1,0 +1,12 @@
+<h1>Prebivaliscas</h1>
+
+<div id="prebivaliscas">
+  <% @prebivaliscas.each do |prebivalisca| %>
+    <%= render prebivalisca %>
+    <p>
+      <%= link_to "Show this prebivalisca", prebivalisca %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New prebivalisca", new_prebivalisca_path %>

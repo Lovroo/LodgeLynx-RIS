@@ -1,0 +1,27 @@
+<%= form_with(model: prebivalisca) do |form| %>
+  <% if prebivalisca.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(prebivalisca.errors.count, "error") %> prohibited this prebivalisca from being saved:</h2>
+
+      <ul>
+        <% prebivalisca.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :Name, style: "display: block" %>
+    <%= form.text_field :Name %>
+  </div>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.number_field :rating %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
