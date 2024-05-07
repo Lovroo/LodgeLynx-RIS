@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @conversation %>
+<% @messages.each do |message| %>
+  <div>
+    <strong>From:</strong> <%= message.user.ime %> <!-- Assuming user has a name attribute -->
+  </div>
+  <div>
+    <strong>Message:</strong> <%= message.text %>
+  </div>
+  <div>
+    <strong>Read:</strong> <%= message.read ? 'Yes' : 'No' %>
+  </div>
+  <hr>
+<% end %>
+
+<div>
+  <%= link_to "Edit this conversation", edit_conversation_path(@conversation) %> |
+  <%= link_to "Back to conversations", conversations_path %>
+
+  <%= button_to "Destroy this conversation", @conversation, method: :delete %>
+</div>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :conversations
+  resources :messages
+  resources :favorites
+  resources :najemis
   devise_for :users
   resources :prebivaliscas
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,27 @@
+<%= form_with(model: najemi) do |form| %>
+  <% if najemi.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(najemi.errors.count, "error") %> prohibited this najemi from being saved:</h2>
+
+      <ul>
+        <% najemi.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :dat_najema, style: "display: block" %>
+    <%= form.date_field :dat_najema %>
+  </div>
+
+  <div>
+    <%= form.label :dat_konec_najema, style: "display: block" %>
+    <%= form.date_field :dat_konec_najema %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

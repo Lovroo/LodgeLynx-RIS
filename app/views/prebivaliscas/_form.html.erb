@@ -13,12 +13,37 @@
 
   <div>
     <%= form.label :Name, style: "display: block" %>
-    <%= form.text_field :Name %>
+    <%= form.text_field :Name, required: true %>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating %>
+    <%= form.number_field :rating, required: true, in: 1..10 %>
+  </div>
+
+  <div>
+    <%= form.label :kvadratura, style: "display: block" %>
+    <%= form.number_field :kvadratura, required: true, min: 0 %>
+  </div>
+
+  <div>
+    <%= form.label :cena, style: "display: block" %>
+    <%= form.number_field :cena, required: true, min: 0 %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.text_field :image, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :lokacija, style: "display: block" %>
+    <%= form.text_field :lokacija, required: true %>
   </div>
 
   <div>

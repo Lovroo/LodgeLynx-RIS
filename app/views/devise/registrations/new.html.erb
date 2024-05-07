@@ -5,20 +5,35 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ime %><br />
+    <%= f.text_field :ime, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priimek %><br />
+    <%= f.text_field :priimek, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telefonska %><br />
+    <%= f.text_field :telefonska, required: true %>
   </div>
 
   <div class="actions">

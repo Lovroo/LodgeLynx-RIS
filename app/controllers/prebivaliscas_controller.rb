@@ -8,6 +8,7 @@ class PrebivaliscasController < ApplicationController
 
   # GET /prebivaliscas/1 or /prebivaliscas/1.json
   def show
+    @prebivaliscas = Prebivalisca.all
   end
 
   # GET /prebivaliscas/new
@@ -22,6 +23,7 @@ class PrebivaliscasController < ApplicationController
   # POST /prebivaliscas or /prebivaliscas.json
   def create
     @prebivalisca = Prebivalisca.new(prebivalisca_params)
+    @prebivalisca.user = current_user
 
     respond_to do |format|
       if @prebivalisca.save
@@ -65,6 +67,6 @@ class PrebivaliscasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def prebivalisca_params
-      params.require(:prebivalisca).permit(:Name, :rating)
+      params.require(:prebivalisca).permit(:Name, :rating, :kvadratura, :cena, :image, :description, :lokacija)
     end
 end
