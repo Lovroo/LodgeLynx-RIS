@@ -5,10 +5,5 @@
 <div id="favorites">
   <% @favorites.each do |favorite| %>
     <%= render favorite %>
-    <p>
-      <%= link_to "Show this favorite", favorite %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New favorite", new_favorite_path %>

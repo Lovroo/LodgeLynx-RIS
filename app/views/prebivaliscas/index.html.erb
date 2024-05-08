@@ -10,6 +10,11 @@
         <%= form.hidden_field :post_user_id, value: prebivalisca.user.id %>
         <%= form.submit "Start chatting with the najemodajalec!" %>
       <% end %>
+
+      <%= form_with(url: add_To_favorites_favorites_path, method: :post) do |form| %>
+        <%= form.hidden_field :prebivalisceID, value: prebivalisca.id %>
+        <%= form.submit "Add to favorites!" %>
+      <% end %>
       
       </p>
   <% end %>

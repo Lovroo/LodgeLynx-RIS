@@ -57,6 +57,29 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def add_To_favorites
+    prebivalisce_id = params[:prebivalisceID]
+    userid = current_user.id
+    # Perform operations to add the item to favorites
+    # For example:
+    @favorite = Favorite.new(user_id: userid, prebivalisca_id: prebivalisce_id)
+
+    if @favorite.save 
+      redirect_to root_path, notice: "Added to favorites successfully"
+    else
+      puts "No"
+    end
+  end
+
+  def redirect_to_prebivalisca_show(favorite)
+    prebivalisca = Prebivalisca.find_by(id: favorite.prebivalisca_id)
+    if prebivalisca
+      redirect_to prebivalisca_path(prebivalisca)
+    else
+      redirect_to root_path, notice: "Prebivalisca not found"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite

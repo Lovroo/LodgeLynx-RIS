@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   post '/conversations/create_with_user', to: 'conversations#create_with_user', as: :create_with_user_conversations
 
+  post '/favorites/add_To_favorites', to: 'favorites#add_To_favorites', as: :add_To_favorites_favorites
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

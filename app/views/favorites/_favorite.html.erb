@@ -1,2 +1,6 @@
 <div id="<%= dom_id favorite %>">
+<% prebivalisce = Prebivalisca.find(favorite.prebivalisca_id) %>
+<%= prebivalisce.Name %>
+<%= prebivalisce.image %>
+<%= link_to "More" , prebivalisce %>
 </div>
