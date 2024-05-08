@@ -59,6 +59,21 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def create_with_user
+    user_id = current_user.id
+    post_user_id = params[:post_user_id]
+
+    @conversation = Conversation.new(user_id: user_id, receiver_id: post_user_id)
+    
+    if @conversation.save
+      redirect_to root_path, notice: "Conversation was successfully created."
+    else
+      puts "Conversation could not be saved."
+      # You can also print out the errors for debugging
+      puts @conversation.errors.full_messages
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
@@ -69,4 +84,6 @@ class ConversationsController < ApplicationController
     def conversation_params
       params.fetch(:conversation, {})
     end
+    
+    
 end

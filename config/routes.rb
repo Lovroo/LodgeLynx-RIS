@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :najemis
   devise_for :users
   resources :prebivaliscas
+
+  post '/conversations/create_with_user', to: 'conversations#create_with_user', as: :create_with_user_conversations
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,4 +16,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "prebivaliscas#index"
+
+  #resources :conversations do
+  #  collection do
+  #    post :create_with_user
+  #  end
+  #end
+  
 end

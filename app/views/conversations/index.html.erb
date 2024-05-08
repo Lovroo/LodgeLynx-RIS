@@ -6,7 +6,8 @@
   <% @conversations.each do |conversation| %>
     <%= render conversation %>
     <p>
-      <%= conversation.receiver_id %>
+      <% receiver = User.find(conversation.receiver_id) %>
+      <%= receiver.ime %>
       <%= link_to "Show this conversation", conversation %>
     </p>
   <% end %>
