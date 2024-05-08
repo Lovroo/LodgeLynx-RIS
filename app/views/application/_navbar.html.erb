@@ -10,10 +10,10 @@
       <%= link_to 'Browse', root_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
-    <%= link_to 'Chat', 'conversations#index', class: 'nav-link' %>
+    <%= link_to 'Chat', '/conversations#index', class: 'nav-link' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Favorites', 'favorites#index', class: 'nav-link' %>
+    <%= link_to 'Favorites', '/favorites#index', class: 'nav-link' %>
   </li>
    <!-- <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
@@ -33,8 +33,8 @@
       <a class="nav-link disabled" href="#">Disabled</a>
     </li> -->
   </ul>
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <form class="form-inline my-2 my-lg-0" >
+    <input class="form-control mr-sm-2" type="search" action="/search" placeholder="Search" aria-label="Search" name="q">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
   <% if current_user %>

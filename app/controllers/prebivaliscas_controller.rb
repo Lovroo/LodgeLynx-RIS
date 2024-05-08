@@ -3,12 +3,20 @@ class PrebivaliscasController < ApplicationController
 
   # GET /prebivaliscas or /prebivaliscas.json
   def index
-    @prebivaliscas = Prebivalisca.all
+    if params[:q]
+      @prebivaliscas = Prebivalisca.where("lower(Name) LIKE ? OR lower(Lokacija) LIKE ? OR lower(description) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
+    else
+      @prebivaliscas = Prebivalisca.all
+    end
   end
 
   # GET /prebivaliscas/1 or /prebivaliscas/1.json
   def show
-    @prebivaliscas = Prebivalisca.all
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    else
+      @prebivaliscas = Prebivalisca.all
+    end
   end
 
   # GET /prebivaliscas/new

@@ -3,13 +3,21 @@ class ConversationsController < ApplicationController
 
   # GET /conversations or /conversations.json
   def index
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    else
     @conversations = Conversation.all
+    end
   end
 
   # GET /conversations/1 or /conversations/1.json
   def show
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    else
     @messages = @conversation.messages
     @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+    end
   end
 
   # GET /conversations/new

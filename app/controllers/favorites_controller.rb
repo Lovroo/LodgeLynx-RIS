@@ -3,11 +3,18 @@ class FavoritesController < ApplicationController
 
   # GET /favorites or /favorites.json
   def index
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    else
     @favorites = Favorite.all
+    end
   end
 
   # GET /favorites/1 or /favorites/1.json
   def show
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    end
   end
 
   # GET /favorites/new

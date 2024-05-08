@@ -3,11 +3,18 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    else
     @messages = Message.all
+    end
   end
 
   # GET /messages/1 or /messages/1.json
   def show
+    if params[:q]
+      redirect_to root_path(q: params[:q])
+    end
   end
 
   # GET /messages/new
