@@ -69,12 +69,18 @@ class FavoritesController < ApplicationController
     userid = current_user.id
     # Perform operations to add the item to favorites
     # For example:
-    @favorite = Favorite.new(user_id: userid, prebivalisca_id: prebivalisce_id)
+    existing_favorite = Favorite.find_by(user_id: userid, prebivalisca_id: prebivalisce_id)
 
-    if @favorite.save 
-      redirect_to root_path, notice: "Added to favorites successfully"
+    if existing_favorite
+      redirect_to root_path, notice: "nc nebo lil bro ze obstaja"
     else
-      puts "No"
+      @favorite = Favorite.new(user_id: userid, prebivalisca_id: prebivalisce_id)
+
+      if @favorite.save 
+        redirect_to root_path, notice: "Added to favorites successfully"
+      else
+        puts "No"
+      end
     end
   end
 

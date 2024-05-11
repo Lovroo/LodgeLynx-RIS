@@ -71,14 +71,20 @@ class ConversationsController < ApplicationController
     user_id = current_user.id
     post_user_id = params[:post_user_id]
 
-    @conversation = Conversation.new(user_id: user_id, receiver_id: post_user_id)
-    
-    if @conversation.save
-      redirect_to root_path, notice: "Conversation was successfully created."
-    else
-      puts "Conversation could not be saved."
-      # You can also print out the errors for debugging
-      puts @conversation.errors.full_messages
+    existing_conversation = Conversation.find_by(user_id: user_id, receiver_id: post_user_id) || Conversation.find_by(user_id: post_user_id, receiver_id: user_id)
+    existing_conversationv2 = Conversation.find_by(user_id:user_id, receiver_id:user_id)
+    if existing_conversation || existing_conversationv2
+      redirect_to root_path, notice:"nc nebo lil bro ze obstaja"
+    else  
+      @conversation = Conversation.new(user_id: user_id, receiver_id: post_user_id)
+      
+      if @conversation.save
+        redirect_to root_path, notice: "Conversation was successfully created."
+      else
+        puts "Conversation could not be saved."
+        # You can also print out the errors for debugging
+        puts @conversation.errors.full_messages
+      end
     end
   end
 

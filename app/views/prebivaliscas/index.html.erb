@@ -5,6 +5,7 @@
     <%= render prebivalisca %>
     <p>
       <%= link_to "Show this prebivalisca", prebivalisca %>
+      <% if current_user %>
       <!-- <%= link_to "Start conversation with #{prebivalisca.user.ime}", create_with_user_conversations_path(post_user_id: prebivalisca.user.id), method: :post %> -->
       <%= form_with(url: create_with_user_conversations_path, method: :post) do |form| %>
         <%= form.hidden_field :post_user_id, value: prebivalisca.user.id %>
@@ -15,9 +16,10 @@
         <%= form.hidden_field :prebivalisceID, value: prebivalisca.id %>
         <%= form.submit "Add to favorites!" %>
       <% end %>
-      
+      <% end %>
       </p>
   <% end %>
 </div>
-
+<% if current_user %>
 <%= link_to "New prebivalisca", new_prebivalisca_path %>
+<% end %>

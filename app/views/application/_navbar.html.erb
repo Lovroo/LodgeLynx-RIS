@@ -9,12 +9,15 @@
     <li class="nav-item active">
       <%= link_to 'Browse', root_path, class: 'nav-link' %>
     </li>
+    <% if current_user %>
+
     <li class="nav-item">
     <%= link_to 'Chat', '/conversations#index', class: 'nav-link' %>
   </li>
   <li class="nav-item">
     <%= link_to 'Favorites', '/favorites#index', class: 'nav-link' %>
   </li>
+  <% end %>
    <!-- <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li>
