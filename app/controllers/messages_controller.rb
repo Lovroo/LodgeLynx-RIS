@@ -64,6 +64,20 @@ class MessagesController < ApplicationController
     end
   end
 
+  def send_a_message
+    conn = params[:conn]
+    usrid = current_user.id
+    sporocilo = params[:message_content]
+
+    @message = Message.new(text:sporocilo, user_id: usrid, conversation_id:conn)
+
+    if @message.save  
+      redirect_to conversation_path(conn)
+    else
+      puts("ne dela")
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message

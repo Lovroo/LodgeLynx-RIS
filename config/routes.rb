@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   post '/favorites/add_To_favorites', to: 'favorites#add_To_favorites', as: :add_To_favorites_favorites
 
+  post '/messages/send_a_message', to: 'messages#send_a_message', as: :send_a_message_messages
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

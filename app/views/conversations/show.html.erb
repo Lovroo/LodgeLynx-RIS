@@ -15,8 +15,14 @@
 <% end %>
 
 <div>
-  <%= link_to "Edit this conversation", edit_conversation_path(@conversation) %> |
+
+  <%= form_with(url: send_a_message_messages_path, method: :post) do |form| %>
+    <%= form.hidden_field :conn, value: @conversation.id %>
+    <%= form.text_area :message_content, rows: 4, placeholder: "Type your message here..." %>
+    <%= form.submit "Send" %>
+  <% end %>
+    
+  <%= button_to "Destroy this conversation", @conversation, method: :delete %>
   <%= link_to "Back to conversations", conversations_path %>
 
-  <%= button_to "Destroy this conversation", @conversation, method: :delete %>
 </div>
