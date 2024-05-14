@@ -1,12 +1,25 @@
 <div id="<%= dom_id najemi %>">
   <p>
-    <strong>Dat najema:</strong>
+    <strong>Rent starts on:</strong>
     <%= najemi.dat_najema %>
   </p>
 
   <p>
-    <strong>Dat konec najema:</strong>
+    <strong>Rent ends on:</strong>
     <%= najemi.dat_konec_najema %>
   </p>
+  <%= form_with(url: destroy_favorite_path(najemi), method: :delete, class: "d-inline") do |form| %>
+    <%= form.hidden_field :id, value: najemi.id %>
+    <label class="amount">
+      <span>Amount: $5.00</span>
+    </label>
 
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="A month's subscription"
+      data-amount="500"
+      data-locale="auto">
+    </script>
+  <% end %>
 </div>

@@ -23,9 +23,13 @@ class NajemisController < ApplicationController
   def create
     @najemi = Najemi.new(najemi_params)
 
+    existing_reservation = Najemi.where("dat_najema <= ? AND dat_konec_najema >= ? AND prebivalisca_id = ?", @najemi.dat_konec_najema, @najemi.dat_najema, @najemi.prebivalisca_id).exists?
     respond_to do |format|
-      if @najemi.save
-        format.html { redirect_to najemi_url(@najemi), notice: "Najemi was successfully created." }
+      if existing_reservation
+        format.html { redirect_to root_path, alert: "There is already a reservation between the selected dates." }
+        format.json { render json: { error: "There is already a reservation between the selected dates." }, status: :unprocessable_entity }
+      elsif @najemi.save
+        format.html { redirect_to najemi_url(@najemi), notice: "Reservation request was sucessfuly created. Please pay using the provided link" }
         format.json { render :show, status: :created, location: @najemi }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -33,6 +37,7 @@ class NajemisController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /najemis/1 or /najemis/1.json
   def update
@@ -46,8 +51,11 @@ class NajemisController < ApplicationController
       end
     end
   end
+  def potrdi
 
+  end
   # DELETE /najemis/1 or /najemis/1.json
+  # “
   def destroy
     @najemi.destroy!
 
@@ -65,6 +73,6 @@ class NajemisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def najemi_params
-      params.require(:najemi).permit(:dat_najema, :dat_konec_najema)
+      params.require(:najemi).permit(:dat_najema, :dat_konec_najema, :user_id, :prebivalisca_id, :id)
     end
 end

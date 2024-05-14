@@ -73,8 +73,9 @@ class ConversationsController < ApplicationController
 
     existing_conversation = Conversation.find_by(user_id: user_id, receiver_id: post_user_id) || Conversation.find_by(user_id: post_user_id, receiver_id: user_id)
     existing_conversationv2 = Conversation.find_by(user_id:user_id, receiver_id:user_id)
-    if existing_conversation || existing_conversationv2
-      redirect_to root_path, notice:"nc nebo lil bro ze obstaja"
+    p(user_id, post_user_id, "wow!")
+    if   user_id === Integer(post_user_id) || existing_conversation || existing_conversationv2
+      redirect_to root_path, notice:"Error creating conversation"
     else  
       @conversation = Conversation.new(user_id: user_id, receiver_id: post_user_id)
       

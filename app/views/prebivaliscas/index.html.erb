@@ -1,25 +1,47 @@
-<h1>Prebivaliscas</h1>
+<div class="container">
+  <div id="prebivaliscas" class="row">
+    <% @prebivaliscas.each do |prebivalisca| %>
+      <div class="col-md-4 mb-4">
+        <div class="card border">
+          <%=
+            if prebivalisca.image != "Brez slik"
+              image_tag prebivalisca.image, class: "card-img-top", alt: "Prebivalisca Image"
+            else
+              image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png", class: "card-img-top", alt: "No image uploaded"
+            end
 
-<div id="prebivaliscas">
-  <% @prebivaliscas.each do |prebivalisca| %>
-    <%= render prebivalisca %>
-    <p>
-      <%= link_to "Show this prebivalisca", prebivalisca %>
-      <% if current_user %>
-      <!-- <%= link_to "Start conversation with #{prebivalisca.user.ime}", create_with_user_conversations_path(post_user_id: prebivalisca.user.id), method: :post %> -->
-      <%= form_with(url: create_with_user_conversations_path, method: :post) do |form| %>
-        <%= form.hidden_field :post_user_id, value: prebivalisca.user.id %>
-        <%= form.submit "Start chatting with the najemodajalec!" %>
-      <% end %>
+          %>
+          <div class="card-body text-info border-primary">
+            <h5 class="card-title font-weight-bold" style="font-size: x-large !important;"><%= prebivalisca.Name %></h5>
+            <h5 class="card-title"><%= prebivalisca.user.ime %></h5>
+            <p class="card-text"><%= prebivalisca.lokacija %></p>
+            <p class="card-text"><%= prebivalisca.cena %> EUR</p>
+            <!-- You can add more properties here as needed -->
+            <p>
+              <% if current_user %>
+                <%= form_with(url: create_with_user_conversations_path, method: :post, class: "d-inline") do |form| %>
+                  <%= form.hidden_field :post_user_id, value: prebivalisca.user.id %>
+                  <%= button_tag type: 'submit', class: "btn btn-primary btn-icon mr-2" do %>
+                    <i class="fas fa-comment-alt"></i>
+                  <% end %>
+                <% end %>
+                <%= form_with(url: add_To_favorites_favorites_path, method: :post, class: "d-inline") do |form| %>
+                  <%= form.hidden_field :prebivalisceID, value: prebivalisca.id %>
+                  <%= button_tag type: 'submit', class: "btn  btn-primary btn-icon mr-2" do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <%= link_to  "Show more",prebivalisca, class: "btn btn-primary mr-2"  %>
 
-      <%= form_with(url: add_To_favorites_favorites_path, method: :post) do |form| %>
-        <%= form.hidden_field :prebivalisceID, value: prebivalisca.id %>
-        <%= form.submit "Add to favorites!" %>
-      <% end %>
-      <% end %>
-      </p>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user %>
+    <%= link_to "New prebivalisca", new_prebivalisca_path, class: "btn btn-primary" %>
   <% end %>
 </div>
-<% if current_user %>
-<%= link_to "New prebivalisca", new_prebivalisca_path %>
-<% end %>

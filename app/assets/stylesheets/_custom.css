@@ -1,0 +1,48 @@
+/* Custom CSS for padding and button styling */
+.card {
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 0.25rem; /* Rounded corners for the card */
+    border: 1px solid rgba(0, 0, 0, 0.125); /* Add a border for the card */
+}
+
+.btn {
+    border-radius: 20px; /* Rounded corners for buttons */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    border-color: #007bff; /* Button border color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Button color on hover */
+    border-color: #0056b3; /* Button border color on hover */
+}
+
+.btn-success {
+    background-color: #28a745; /* Success button color */
+    border-color: #28a745; /* Button border color */
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Button color on hover */
+    border-color: #218838; /* Button border color on hover */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Info button color */
+    border-color: #17a2b8; /* Button border color */
+}
+
+.btn-info:hover {
+    background-color: #138496; /* Button color on hover */
+    border-color: #138496; /* Button border color on hover */
+}
+
+.card-img-top{
+    width: 250px; /* Adjusted width to fill the card container */
+    height: 200px; /* Adjusted height */
+    object-fit: cover; /* Ensure the image covers the entire area */
+    border-top-left-radius: 0.25rem; /* Rounded corners for top-left */
+    border-bottom-left-radius: 0.25rem; /* Rounded corners for bottom-left */
+}

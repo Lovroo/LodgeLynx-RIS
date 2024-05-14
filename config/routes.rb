@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :najemis
   devise_for :users
   resources :prebivaliscas
+  resources :payments
 
   post '/conversations/create_with_user', to: 'conversations#create_with_user', as: :create_with_user_conversations
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
 
   post '/messages/send_a_message', to: 'messages#send_a_message', as: :send_a_message_messages
 
+  delete '/favorites/:id', to: 'favorites#destroy', as: :destroy_favorite
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

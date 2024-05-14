@@ -1,37 +1,36 @@
-<div id="<%= dom_id prebivalisca %>">
-  <p>
-    <strong>Name:</strong>
-    <%= prebivalisca.Name %>
-  </p>
-  <p>
-    <strong>User:</strong>
-    <%= prebivalisca.user.ime %>
-  </p>
+<div class="d-flex mb-4">
+  <img src="<%= prebivalisca.image %>" class="card-img-top" alt="Prebivalisce Image" style="height: 100%; max-width: 50%; object-fit: cover;">
 
-  <p>
-    <strong>Rating:</strong>
-    <%= prebivalisca.rating %>
-  </p>
+  <div id="<%= dom_id prebivalisca %>" class="card ml-2" style="width: 50%;">
+    <div class="card-body d-flex flex-column justify-content-between" style="height: 100%;">
+      <h1 class="card-title"><%= prebivalisca.Name %></h1>
+      <p class="card-text">
+        <strong>Kvadratura:</strong> <%= prebivalisca.kvadratura %> m²
+        <strong>Cena:</strong> <%= prebivalisca.cena %> EUR
+      </p>
+      <h4 class="card-title">User: <%= prebivalisca.user.ime %></h4>
+      <p class="card-text">
+        <strong>Location:</strong> <%= prebivalisca.lokacija %>
+        <strong>Created At:</strong> <%= prebivalisca.created_at %>
+      </p>
+      <p class="card-text">
+        <strong>Description:</strong> <%= prebivalisca.description %>
+      </p>
 
-  <p>
-    <strong>Kvadratura:</strong>
-    <%= prebivalisca.kvadratura %>
-  </p>
+      <%= form_with(model: Najemi.create, url: najemis_path, method: :post) do |form| %>
+        <%= form.hidden_field :prebivalisca_id, value: prebivalisca.id %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <div class="form-group">
+          <%= form.label :dat_najema, "Start Date:" %>
+          <%= form.date_field :dat_najema, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= form.label :dat_konec_najema, "End Date:" %>
+          <%= form.date_field :dat_konec_najema, class: "form-control", required: true %>
+        </div>
+        <%= form.submit "Book Now", class: "btn btn-primary" %>
+      <% end %>
 
-  <p>
-    <strong>Cena:</strong>
-    <%= prebivalisca.cena %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= prebivalisca.description %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <%= prebivalisca.image %>
-  </p>
-
-
+    </div>
+  </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_115413) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_131044) do
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_115413) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.integer "prebivalisca_id", null: false
+    t.boolean "payed", default: false
     t.index ["prebivalisca_id"], name: "index_najemis_on_prebivalisca_id"
     t.index ["user_id"], name: "index_najemis_on_user_id"
   end

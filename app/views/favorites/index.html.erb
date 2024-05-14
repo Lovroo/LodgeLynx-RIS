@@ -1,9 +1,41 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div id="favorites" class="row">
+    <% @favorites.each do |favorite| %>
+      <% prebivalisce = Prebivalisca.find(favorite.prebivalisca_id) %>
+      <div class="col-md-4 mb-4">
+        <div class="card border">
+          <% if prebivalisce.image.present? %>
+            <%= image_tag prebivalisce.image, class: "card-img-top", alt: "Prebivalisce Image" %>
+          <% else %>
+            <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png", class: "card-img-top", alt: "No image uploaded" %>
+          <% end %>
+          <div class="card-body text-info border-primary">
+            <h5 class="card-title font-weight-bold" style="font-size: x-large !important;"><%= prebivalisce.Name %></h5>
+            <h5 class="card-title"><%= prebivalisce.user.ime %></h5>
+            <p class="card-text"><%= prebivalisce.lokacija %></p>
+            <p class="card-text"><%= prebivalisce.cena %> EUR</p>
+            <p>
+              <% if current_user %>
+                <%= form_with(url: create_with_user_conversations_path, method: :post, class: "d-inline") do |form| %>
+                  <%= form.hidden_field :post_user_id, value: prebivalisce.user.id %>
+                  <%= button_tag type: 'submit', class: "btn btn-primary btn-icon mr-2" do %>
+                    <i class="fas fa-comment-alt"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
 
-<h1>Favorites</h1>
+              <%= form_with(url: destroy_favorite_path(favorite), method: :delete, class: "d-inline") do |form| %>
+                <%= form.hidden_field :id, value: favorite.id %>
+                <%= button_tag type: 'submit', class: "btn btn-primary btn-icon mr-2" do %>
+                  <i class="fa-solid fa-heart-crack"></i>
+                <% end %>
+              <% end %>
+              <%= link_to  "Show more",prebivalisce, class: "btn btn-primary mr-2"  %>
 
-<div id="favorites">
-  <% @favorites.each do |favorite| %>
-    <%= render favorite %>
-  <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
