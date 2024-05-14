@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
+<%= button_to "Destroy this conversation", @conversation, method: :delete, class:"btn btn-danger", style:"float:right;" %>
 <%= render @conversation %>
 <% @messages.each do |message| %>
   <div>
@@ -8,9 +8,16 @@
   <div>
     <strong>Message:</strong> <%= message.text %>
   </div>
-  <div>
-    <strong>Read:</strong> <%= message.read ? 'Yes' : 'No' %>
-  </div>
+  <% if current_user.id == message.user_id %>
+  <div class="button-container" style="display:flex;">
+  <%= button_to message, method: :delete, class:"btn btn-link" do %>
+    <i class="fa-solid fa-trash fa-lg"></i>
+  <% end %>
+  <%= button_to edit_message_path(message), method: :get, class: "btn btn-link" do %>
+    <i class="fa-solid fa-file-pen fa-lg"></i> <!-- Adjust the size using fa-lg -->
+  <% end %> 
+  </div>  
+  <% end %>
   <hr>
 <% end %>
 
@@ -18,11 +25,10 @@
 
   <%= form_with(url: send_a_message_messages_path, method: :post) do |form| %>
     <%= form.hidden_field :conn, value: @conversation.id %>
-    <%= form.text_area :message_content, rows: 4, placeholder: "Type your message here..." %>
-    <%= form.submit "Send" %>
+    <%= form.text_area :message_content, rows: 4, class:"form-control", placeholder: "Type your message here..." %>
+    <%= form.submit "Send", class:"btn btn-primary", style:"width:25%; margin-top:5px;" %>
   <% end %>
     
-  <%= button_to "Destroy this conversation", @conversation, method: :delete %>
   <%= link_to "Back to conversations", conversations_path %>
 
 </div>

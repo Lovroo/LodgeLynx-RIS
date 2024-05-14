@@ -40,8 +40,10 @@
 }
 
 .card-img-top{
-    width: 250px; /* Adjusted width to fill the card container */
-    height: 200px; /* Adjusted height */
+    min-width: 250px; /* Adjusted width to fill the card container */
+    min-height: 200px;
+    max-width: 250px; /* Adjusted width to fill the card container */
+    max-height: 200px; /* Adjusted height */
     object-fit: cover; /* Ensure the image covers the entire area */
     border-top-left-radius: 0.25rem; /* Rounded corners for top-left */
     border-bottom-left-radius: 0.25rem; /* Rounded corners for bottom-left */

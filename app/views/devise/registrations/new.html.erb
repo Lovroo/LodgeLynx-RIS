@@ -1,43 +1,43 @@
-<h2>Sign up</h2>
+<h2 style="display: flex; justify-content: center; color:#007bff;">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+    <%= f.label :email, style:"color:#007bff;" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, style:"color:#007bff;" %>
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em style="color:#007bff;">(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", required: true %>
+    <%= f.password_field :password, autocomplete: "new-password",class:"form-control", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+    <%= f.label :password_confirmation, style:"color:#007bff;" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :ime %><br />
-    <%= f.text_field :ime, required: true %>
+    <%= f.label :ime, style:"color:#007bff;" %><br />
+    <%= f.text_field :ime,class:"form-control", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :priimek %><br />
-    <%= f.text_field :priimek, required: true %>
+    <%= f.label :priimek, style:"color:#007bff;" %><br />
+    <%= f.text_field :priimek,class:"form-control", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :telefonska %><br />
-    <%= f.text_field :telefonska, required: true %>
+    <%= f.label :telefonska, style:"color:#007bff;" %><br />
+    <%= f.text_field :telefonska,class:"form-control", required: true %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions"style="display: flex; justify-content: center;">
+    <%= f.submit "Sign up",class:"btn btn-primary",style:"width:40%; justify-content:center; margin-top:20px;" %>
   </div>
 <% end %>
 

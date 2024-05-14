@@ -5,6 +5,15 @@ class PrebivaliscasController < ApplicationController
   def index
     if params[:q]
       @prebivaliscas = Prebivalisca.where("lower(Name) LIKE ? OR lower(Lokacija) LIKE ? OR lower(description) LIKE ?", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%", "%#{params[:q].downcase}%")
+    elsif params[:isornot]
+      order_by = params[:order_by].presence || 'name' 
+      if order_by == 'cena'
+        @prebivaliscas = Prebivalisca.order(Arel.sql('CAST(cena AS DECIMAL) ASC'))
+      elsif order_by == 'kvadratura'
+          @prebivaliscas = Prebivalisca.order(Arel.sql('CAST(kvadratura AS DECIMAL) ASC'))
+      else
+        @prebivaliscas = Prebivalisca.order("LOWER(#{order_by})")
+      end
     else
       @prebivaliscas = Prebivalisca.all
     end

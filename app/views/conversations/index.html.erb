@@ -1,16 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Conversations</h1>
+<h1 style="color:#007bff;">Conversations</h1>
 
 <div id="conversations">
   <% @conversations.each do |conversation| %>
     <%= render conversation %>
     <p>
       <% receiver = User.find(conversation.receiver_id) %>
-      <%= receiver.ime %>
-      <%= link_to "Show this conversation", conversation %>
+      <h3><%= link_to receiver.ime, conversation, style: "display: block; border: 2px solid #007bff; border-radius: 5px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; width:100%; text-align:center;"  %></h3>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New conversation", new_conversation_path %>
+<!-- <%= link_to "New conversation", new_conversation_path, class:"btn btn-link", style:"border: 2px solid #007bff; border-radius: 5px; padding: 10px 20px; color:white; background-color: #007bff;" %> -->

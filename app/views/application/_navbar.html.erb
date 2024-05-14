@@ -18,6 +18,14 @@
     <%= link_to 'Favorites', '/favorites#index', class: 'nav-link' %>
   </li>
   <% end %>
+  </li>
+  <% if current_user %>
+  <li class="nav-item">
+    <%= link_to 'odjava', destroy_user_session_path, class: 'nav-link', method: :delete %>
+    <% else %>
+    <%= link_to "Login", new_user_session_path,  class: 'nav-link' %>
+  </li>
+  <% end %>
    <!-- <li class="nav-item">
       <a class="nav-link" href="#">Link</a>
     </li>
@@ -38,15 +46,12 @@
   </ul>
   <form class="form-inline my-2 my-lg-0" >
     <input class="form-control mr-sm-2" type="search" action="/search" placeholder="Search" aria-label="Search" name="q">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
   </form>
   <% if current_user %>
-  <div> &nbsp &nbsp
+  <div class="navbar-text"> &nbsp &nbsp
   Welcome <%= current_user.ime %>
-  <%= link_to 'odjava', destroy_user_session_path, method: :delete %>
   </div>
-  <% else %>
-  <%= link_to "Login", new_user_session_path %>
   <% end %>
 </div>
 </nav>

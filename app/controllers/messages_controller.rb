@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to message_url(@message), notice: "Message was successfully updated." }
+        format.html { redirect_to conversation_path(@message.conversation_id), notice: "Message was successfully updated." }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class MessagesController < ApplicationController
     @message.destroy!
 
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: "Message was successfully destroyed." }
+      format.html { redirect_to conversation_path(@message.conversation_id), notice: "Message was successfully destroyed." }
       format.json { head :no_content }
     end
   end
