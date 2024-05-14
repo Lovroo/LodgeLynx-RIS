@@ -52,8 +52,16 @@ class NajemisController < ApplicationController
     end
   end
   def potrdi
-
+    najemId = params[:id]
+    @Najemtr = Najemi.find_by(id: najemId)
+    if @Najemtr
+      @Najemtr.update(payed: true)
+      redirect_to @Najemtr, notice: "Payment confirmed successfully."
+    else
+      redirect_to root_path, alert: "Najemi not found."
+    end
   end
+
   # DELETE /najemis/1 or /najemis/1.json
   # “
   def destroy
