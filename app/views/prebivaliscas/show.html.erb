@@ -1,9 +1,2 @@
 <%= render @prebivalisca %>
-<% if current_user.id == @prebivalisca.user.id %>
-<div>
-  <%= link_to "Edit this prebivalisca", edit_prebivalisca_path(@prebivalisca) %> |
-  <%= link_to "Back to prebivaliscas", prebivaliscas_path %>
 
-  <%= button_to "Destroy this prebivalisca", @prebivalisca, method: :delete %>
-</div>
-<% end %>

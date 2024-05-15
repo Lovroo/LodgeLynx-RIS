@@ -2,6 +2,19 @@
   <img src="<%= prebivalisca.image %>" class="card-img-top" alt="Prebivalisce Image" style="height: 100%; max-width: 50%; object-fit: cover;">
 
   <div id="<%= dom_id prebivalisca %>" class="card ml-2" style="width: 50%;">
+  <% if current_user.id == @prebivalisca.user.id %>
+  <div class="d-flex justify-content-end p-2">
+  <%= link_to prebivaliscas_path, class: "btn btn-link p-0 ml-2" do %>
+    <i class="fa-solid fa-arrow-left"></i>
+  <% end %>
+    <%= link_to edit_prebivalisca_path(@prebivalisca), class: "btn btn-link p-0" do %>
+      <i class="fa-solid fa-file-pen"></i>
+    <% end %>
+    <%= button_to @prebivalisca, method: :delete, class: "btn btn-danger p-0 ml-2" do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </div>
+<% end %>
     <div class="card-body d-flex flex-column justify-content-between" style="height: 100%;">
       <h1 class="card-title"><%= prebivalisca.Name %></h1>
       <p class="card-text">

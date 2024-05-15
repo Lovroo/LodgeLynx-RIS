@@ -13,40 +13,40 @@
 
   <div>
     <%= form.label :Name, style: "display: block" %>
-    <%= form.text_field :Name, required: true %>
+    <%= form.text_field :Name,class:"form-control", required: true %>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating, required: true, in: 1..10 %>
+    <%= form.number_field :rating,class:"form-control", required: true, in: 1..10 %>
   </div>
 
   <div>
     <%= form.label :kvadratura, style: "display: block" %>
-    <%= form.number_field :kvadratura, required: true, min: 0 %>
+    <%= form.number_field :kvadratura,class:"form-control", required: true, min: 0 %>
   </div>
 
   <div>
     <%= form.label :cena, style: "display: block" %>
-    <%= form.number_field :cena, required: true, min: 0 %>
+    <%= form.number_field :cena,class:"form-control",  required: true, min: 0 %>
   </div>
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description, required: true %>
+    <%= form.text_area :description,class:"form-control",  required: true %>
   </div>
 
   <div>
     <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image, required: true %>
+    <%= form.text_field :image,class:"form-control",  required: true %>
   </div>
 
   <div>
     <%= form.label :lokacija, style: "display: block" %>
-    <%= form.text_field :lokacija, required: true %>
+    <%= form.text_field :lokacija,class:"form-control",  required: true %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "save", class:"btn btn-primary",style:"width:25%; margin-top:10px;" %>
   </div>
 <% end %>
