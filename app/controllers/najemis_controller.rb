@@ -29,7 +29,7 @@ class NajemisController < ApplicationController
         format.html { redirect_to root_path, alert: "There is already a reservation between the selected dates." }
         format.json { render json: { error: "There is already a reservation between the selected dates." }, status: :unprocessable_entity }
       elsif @najemi.save
-        format.html { redirect_to najemi_url(@najemi), notice: "Reservation request was sucessfuly created. Please pay using the provided link" }
+        format.html { redirect_to najemis_path, notice: "Reservation request was sucessfuly created. Please pay using the provided link" }
         format.json { render :show, status: :created, location: @najemi }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -1,40 +1,40 @@
-<div id="<%= dom_id najemi %>">
-  <p>
-    <strong>Rent starts on:</strong>
-    <%= najemi.dat_najema %>
-  </p>
-
-  <p>
-    <strong>Rent ends on:</strong>
-    <%= najemi.dat_konec_najema %>
-  </p>
-  <%
-    cena = najemi.prebivalisca.cena
-    zacNajem = najemi.dat_najema
-    konecNajem = najemi.dat_konec_najema
-    months = (konecNajem.year * 12 + konecNajem.month) - (zacNajem.year * 12 + zacNajem.month)
-    total_price = months * cena
-    if total_price === 0
-      total_price = cena
-    end
-  %>
-  <% if najemi.payed === false %>
-    <%= form_with(url: potrdi_path(najemi), method: :post, class: "d-inline") do |form| %>
-      <%= form.hidden_field :id, value: najemi.id %>
-      <label class="amount">
-        <span>Amount :<%= total_price %> EUR</span>
-      </label>
-
-      <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-description="A month's subscription"
-        data-amount="<%= total_price * 100 %>"
-        data-locale="auto">
-      </script>
+<div id="<%= dom_id(najemi) %>" class="card mb-3">
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Rent starts on:</strong> <%= najemi.dat_najema %>
+    </p>
+    <p class="card-text">
+      <strong>Rent ends on:</strong> <%= najemi.dat_konec_najema %>
+    </p>
+    <%
+      cena = najemi.prebivalisca.cena
+      zacNajem = najemi.dat_najema
+      konecNajem = najemi.dat_konec_najema
+      months = (konecNajem.year * 12 + konecNajem.month) - (zacNajem.year * 12 + zacNajem.month)
+      total_price = months * cena
+      if total_price == 0
+        total_price = cena
+      end
+    %>
+    <% if !najemi.payed %>
+      <%= form_with(url: potrdi_path(najemi), method: :post, class: "d-inline") do |form| %>
+        <%= form.hidden_field :id, value: najemi.id %>
+        <div class="form-group">
+          <label class="amount">
+            <span>Amount: <%= total_price %> EUR</span>
+          </label>
+        </div>
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Pay for the rent"
+          data-amount="<%= total_price * 100 %>"
+          data-locale="auto">
+        </script>
+      <% end %>
+      <%= button_to "Destroy this najemi", najemi, method: :delete, class:"btn btn-danger", style:"margin-top:10px;" %>
+    <% else %>
+      <p class="text-success font-weight-bold">Enjoy your stay</p>
     <% end %>
-  <% else %>
-    <p style="color: green">Enjoy your stay</p>
-  <% end %>
-
+  </div>
 </div>

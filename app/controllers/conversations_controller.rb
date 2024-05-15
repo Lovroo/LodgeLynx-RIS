@@ -12,11 +12,15 @@ class ConversationsController < ApplicationController
 
   # GET /conversations/1 or /conversations/1.json
   def show
-    if params[:q]
-      redirect_to root_path(q: params[:q])
+    if @conversation.receiver_id == current_user.id || @conversation.user_id == current_user.id
+      if params[:q]
+        redirect_to root_path(q: params[:q])
+      else
+      @messages = @conversation.messages
+      @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+      end
     else
-    @messages = @conversation.messages
-    @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+      redirect_to root_path, notice:"mrs"
     end
   end
 

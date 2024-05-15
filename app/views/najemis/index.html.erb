@@ -1,14 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Najemis</h1>
-
 <div id="najemis">
   <% @najemis.each do |najemi| %>
+    <% if current_user.id == najemi.user_id %>
     <%= render najemi %>
-    <p>
-      <%= link_to "Show this najemi", najemi %>
-    </p>
   <% end %>
+<% end %>
 </div>
-
-<%= link_to "New najemi", new_najemi_path %>
