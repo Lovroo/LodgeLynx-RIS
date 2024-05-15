@@ -1,6 +1,7 @@
 class NajemisController < ApplicationController
   before_action :set_najemi, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: %i[]
+  before_action :authorize_user!, except: %i[destroy update index create potrdi]
   # GET /najemis or /najemis.json
   def index
     @najemis = Najemi.all
@@ -8,6 +9,7 @@ class NajemisController < ApplicationController
 
   # GET /najemis/1 or /najemis/1.json
   def show
+
   end
 
   # GET /najemis/new
@@ -56,7 +58,7 @@ class NajemisController < ApplicationController
     @Najemtr = Najemi.find_by(id: najemId)
     if @Najemtr
       @Najemtr.update(payed: true)
-      redirect_to @Najemtr, notice: "Payment confirmed successfully."
+      redirect_to najemis_path, notice: "Payment confirmed successfully."
     else
       redirect_to root_path, alert: "Najemi not found."
     end
@@ -83,4 +85,7 @@ class NajemisController < ApplicationController
     def najemi_params
       params.require(:najemi).permit(:dat_najema, :dat_konec_najema, :user_id, :prebivalisca_id, :id)
     end
+  def authorize_user!
+    redirect_back fallback_location: root_path, alert: 'Nimate dostopa do te strani.' unless current_user.id == @najemi.user_id
+  end
 end

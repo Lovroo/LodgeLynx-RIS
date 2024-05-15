@@ -1,5 +1,7 @@
 class PrebivaliscasController < ApplicationController
   before_action :set_prebivalisca, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[]
+  before_action :authorize_user!, only: %i[ update edit]
 
   # GET /prebivaliscas or /prebivaliscas.json
   def index
@@ -85,5 +87,8 @@ class PrebivaliscasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def prebivalisca_params
       params.require(:prebivalisca).permit(:Name, :rating, :kvadratura, :cena, :image, :description, :lokacija)
+    end
+    def authorize_user!
+      redirect_back fallback_location: root_path, alert: 'Nimate dostopa do te strani.' unless current_user.id == @prebivalisca.user_id
     end
 end

@@ -1,5 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[]
+  before_action :authorize_user!, except: %i[destroy update create add_To_favorites index]
 
   # GET /favorites or /favorites.json
   def index
@@ -103,4 +105,7 @@ class FavoritesController < ApplicationController
     def favorite_params
       params.fetch(:favorite, {})
     end
+  def authorize_user!
+    redirect_back fallback_location: root_path, alert: 'Nimate dostopa do te strani.' unless current_user.id == @favorite.user_id
+  end
 end

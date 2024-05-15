@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ratings
   resources :conversations
   resources :messages
   resources :favorites
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
   delete '/favorites/:id', to: 'favorites#destroy', as: :destroy_favorite
 
   post '/najemis/potrdi', to: 'najemis#potrdi', as: :potrdi
+
+  post '/ratings/create', to: 'ratings#create', as: :create_rating
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -25,9 +25,23 @@
       <p class="card-text">
         <strong>Location:</strong> <%= prebivalisca.lokacija %>
         <strong>Created At:</strong> <%= prebivalisca.created_at %>
-      </p>
+        <br>
+        <strong>Rating :</strong>
+        <% if !( Rating.find_by(prebivalisca_id: prebivalisca.id).nil?) %>
+          <% ratings = Rating.where(prebivalisca_id: prebivalisca.id) %>
+          <% if ratings.any? %>
+            <% total_rating = ratings.sum(&:rating) %>
+            <% average_rating = total_rating.to_f / ratings.size %>
+            <%= "#{average_rating}" %>
+          <% else %>
+            <%= "No ratings available" %>
+          <% end %>
+          <% else %>
+        <p>No ratings</p>
+        <% end %>
+          </p>
       <p class="card-text">
-        <strong>Description:</strong> <%= prebivalisca.description %>
+      <strong>Description:</strong> <%= prebivalisca.description %>
       </p>
 
       <%= form_with(model: Najemi.create, url: najemis_path, method: :post) do |form| %>

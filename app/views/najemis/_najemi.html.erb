@@ -1,40 +1,67 @@
-<div id="<%= dom_id(najemi) %>" class="card mb-3">
+<div class="card border">
   <div class="card-body">
-    <p class="card-text">
-      <strong>Rent starts on:</strong> <%= najemi.dat_najema %>
-    </p>
-    <p class="card-text">
-      <strong>Rent ends on:</strong> <%= najemi.dat_konec_najema %>
-    </p>
-    <%
-      cena = najemi.prebivalisca.cena
-      zacNajem = najemi.dat_najema
-      konecNajem = najemi.dat_konec_najema
-      months = (konecNajem.year * 12 + konecNajem.month) - (zacNajem.year * 12 + zacNajem.month)
-      total_price = months * cena
-      if total_price == 0
-        total_price = cena
-      end
-    %>
-    <% if !najemi.payed %>
-      <%= form_with(url: potrdi_path(najemi), method: :post, class: "d-inline") do |form| %>
-        <%= form.hidden_field :id, value: najemi.id %>
-        <div class="form-group">
-          <label class="amount">
-            <span>Amount: <%= total_price %> EUR</span>
-          </label>
-        </div>
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Pay for the rent"
-          data-amount="<%= total_price * 100 %>"
-          data-locale="auto">
-        </script>
-      <% end %>
-      <%= button_to "Destroy this najemi", najemi, method: :delete, class:"btn btn-danger", style:"margin-top:10px;" %>
-    <% else %>
-      <p class="text-success font-weight-bold">Enjoy your stay</p>
-    <% end %>
-  </div>
-</div>
+    <div class="row">
+      <div class="col-md-8">
+        <div id="<%= dom_id(najemi) %>" class="card mb-3">
+          <div class="card-body">
+            <p class="card-text">
+              <strong>Rent starts on:</strong> <%= najemi.dat_najema %>
+            </p>
+            <p class="card-text">
+              <strong>Rent ends on:</strong> <%= najemi.dat_konec_najema %>
+            </p>
+              <% cena = najemi.prebivalisca.cena %>
+              <% zacNajem = najemi.dat_najema %>
+              <% konecNajem = najemi.dat_konec_najema %>
+              <% months = (konecNajem.year * 12 + konecNajem.month) - (zacNajem.year * 12 + zacNajem.month) %>
+              <% total_price = months * cena %>
+              <% if total_price == 0 %>
+                <% total_price = cena %>
+              <% end %>
+              <% if !najemi.payed%>
+                <%= form_with(url: potrdi_path(najemi), method: :post, class: "d-inline") do |form| %>
+                  <%= form.hidden_field :id, value: najemi.id %>
+                  <div class="form-group">
+                    <label class="amount">
+                      <span>Amount: <%= total_price %> EUR</span>
+                    </label>
+                  </div>
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Pay for the rent"
+                    data-amount="<%= total_price * 100 %>"
+                    data-locale="auto">
+                  </script>
+                <% end %>
+                <%= button_to "Destroy this najemi", najemi, method: :delete, class:"btn btn-danger", style:"margin-top:10px;" %>
+                <% else %>
+                  <p class="text-success font-weight-bold">Enjoy your stay</p>
+                <% if najemi.dat_konec_najema < Date.current && Rating.find_by(user_id: current_user.id,prebivalisca_id: najemi.prebivalisca_id, najemi_id: najemi.id).nil? %>
+                  <%= form_with(model: Rating.create, url: create_rating_path, method: :post) do |form| %>
+                    <%= form.hidden_field :prebivalisca_id, value: najemi.prebivalisca_id %>
+                    <%= form.hidden_field :user_id, value: current_user.id %>
+                    <%= form.hidden_field :najemi_id, value: najemi.id %>
+                    <div class="form-group">
+                      <%= form.label :value, "Rating (1-10)" %>
+                      <%= form.number_field :rating, class: "form-control", min: 1, max: 10, required: true, style: "width: 18%;margin-bottom: 10px;" %>
+                      <%= form.submit "Submit", class: "btn btn-primary" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+              </div>
+              </div>
+              </div>
+              <div class="col-md-4">
+                <% prebivalisca = Prebivalisca.find_by(id: najemi.prebivalisca_id) %>
+                <img src="<%= prebivalisca.image %>" class="card-img-top" alt="Prebivalisce Image">
+                <div class="card-body">
+                  <h5 class="card-title">Contact Details</h5>
+                  <p class="card-text">Phone: <%= prebivalisca.user.telefonska %></p>
+                  <p class="card-text">Email: <%= prebivalisca.user.email %></p>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>

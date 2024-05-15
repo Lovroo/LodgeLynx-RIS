@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[]
+  before_action :authorize_user!, except: %i[destroy update create index create_with_user]
 
   # GET /conversations or /conversations.json
   def index
@@ -103,6 +105,8 @@ class ConversationsController < ApplicationController
     def conversation_params
       params.fetch(:conversation, {})
     end
-    
+  def authorize_user!
+    redirect_back fallback_location: root_path, alert: 'Nimate dostopa do te strani.' unless current_user.id == @conversation.user_id ||current_user.id == @conversation.receiver_id
+  end
     
 end

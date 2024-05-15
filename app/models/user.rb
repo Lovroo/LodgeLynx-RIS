@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :favorite
   has_many :message
   has_many :conversation
+  has_many :rating
 end
