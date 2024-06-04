@@ -4,7 +4,7 @@
 
 <div id="conversations">
   <% @conversations.each do |conversation| %>
-    <% if conversation.receiver == current_user.id || conversation.user_id == current_user.id %>
+    <% if conversation.receiver_id == current_user.id || conversation.user_id == current_user.id %>
     <%= render conversation %>
     <p>
       <% receiver = User.find(conversation.receiver_id) %>

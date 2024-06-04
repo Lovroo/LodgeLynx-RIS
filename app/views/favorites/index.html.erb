@@ -4,7 +4,7 @@
       <% prebivalisce = Prebivalisca.find(favorite.prebivalisca_id) %>
       <div class="col-md-4 mb-4">
         <div class="card border">
-          <% if prebivalisce.image.present? %>
+          <% if prebivalisce.image.present? && prebivalisce.image != "Brez slik" && prebivalisce.image != "brez slik" && prebivalisce.image != "Brez slike"%>
             <%= image_tag prebivalisce.image, class: "card-img-top", alt: "Prebivalisce Image" %>
           <% else %>
             <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png", class: "card-img-top", alt: "No image uploaded" %>
