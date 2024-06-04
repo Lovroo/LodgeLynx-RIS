@@ -89,22 +89,22 @@ rails s
 da poženete server. Potem bo aplikacija dostopna na localhostu.
 ## Screenshots
 
-![App Screenshot](https://cdn.discordapp.com/attachments/917832296869031966/1240232384599687199/image.png?ex=6645cfea&is=66447e6a&hm=f8c04be0f48a436b0ec014731819e9551af73a114857b49930ea50c511dd89eb&)
+![App Screenshot](https://i.ibb.co/8bL2BMR/image1.png)
 
 
-![App Screenshot](https://cdn.discordapp.com/attachments/917832296869031966/1240232596089208862/image.png?ex=6645d01d&is=66447e9d&hm=59ed2a32a17e848da468c22d83fc0b7bdbf3a4292ee646a85570546cca48aff7&)
-
-
-
-![App Screenshot](https://cdn.discordapp.com/attachments/917832296869031966/1240232782072905770/image.png?ex=6645d049&is=66447ec9&hm=2a5a2bfce8d4f983cfed364f1a8d059f1e831b798cbd7d91949d4417f111dbfd&)
+![App Screenshot](https://i.ibb.co/8snKSbm/image2.png)
 
 
 
-![App Screenshot](https://cdn.discordapp.com/attachments/917832296869031966/1240232966848909322/image.png?ex=6645d075&is=66447ef5&hm=d9568772b33d58d69b4b9688ab4efde04c3968d9295044f347b633c4486ffecf&)
+![App Screenshot](https://i.ibb.co/vDxSPf2/image3.png)
 
 
 
-![App Screenshot](https://cdn.discordapp.com/attachments/917832296869031966/1240233089020723210/image.png?ex=6645d092&is=66447f12&hm=57895a0cb8f07bc71e4c4f2c2f89983f37b62a648a10ebd3b9d54e88bcf5cc0a&)
+![App Screenshot](https://i.ibb.co/4f03pwk/image4.png)
+
+
+
+![App Screenshot](https://i.ibb.co/YyTg1fg/image5.png)
 
 
 
